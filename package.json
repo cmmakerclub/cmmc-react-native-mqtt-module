@@ -1,0 +1,21 @@
+{
+  "name": "react-native-cmmc",
+  "version": "0.0.6",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nat Weerawan",
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "react-component",
+    "ios",
+    "android",
+    "toast",
+    "position",
+    "remobile",
+    "mobile"
+  ]
+}
