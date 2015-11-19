@@ -1,7 +1,7 @@
 # React Native CMMC
 
 ## Installation
-```sh
+```
 npm install react-native-cmmc --save
 ```
 
@@ -62,12 +62,45 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
 
 ### Example
 ```js
+
 var React = require('react-native');
 var {
+    DeviceEventEmitter,
     StyleSheet,
     View,
     Image
 } = React;
+
+var CMMCModule = require("react-native-cmmc")
+var {
+  MQTT
+} = CMMCModule;
+
+MQTT.connect({
+  host: 'cmmc.xyz',
+  port: 1883,
+  clientId: String((Math.random()*1000).toFixed(5)),
+  username: '',
+  password: '',
+}, function(err, result) {
+  if (err) {
+    console.log("NOT CONNECTED " + err);
+  }
+  else {
+    MQTT.subscribe("/NatWeerawan/gearname/+/status");
+  }
+});
+
+DeviceEventEmitter.addListener('messageArrived', function(params) {
+  console.log("messageArrived", params.topic)
+  try {
+    var obj = JSON.parse(params.message);
+    that.setState({events: obj.d.seconds });
+  }
+  catch(ex) {
+    console.log("ERROR", ex);
+  }
+});
 
 ```
 
